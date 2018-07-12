@@ -21,9 +21,9 @@
   </div>
 </template>
 <script type="text/javascript">
-  import toolbar from './components/layout/toolbar/toolbar.vue'
-  import drawer from './components/layout/drawer/drawer.vue'
-  import contentHeader from './components/layout/content-header.vue'
+  import toolbar from '@/components/layout/toolbar/toolbar.vue'
+  import drawer from '@/components/layout/drawer/drawer.vue'
+  import contentHeader from '@/components/layout/content-header.vue'
   import { mapGetters } from 'vuex'
   export default {
     name: 'app',
@@ -44,11 +44,34 @@
       toolbar,
       drawer,
       contentHeader
+    },
+    methods: {
+      changeLang: function () {
+        let vm = this
+        if (vm.$t('lang') === 'ar') {
+          document.body.className = 'arabe'
+        }
+        else {
+          document.body.className = 'latino'
+        }
+      }
+    },
+    mounted () {
+      this.changeLang()
+    },
+    updated () {
+      this.changeLang()
     }
   }
 </script>
 
 <style>
+  body.arabe {
+    font-family: 'Changa', sans-serif;
+  }
+  body.latino {
+    font-family: 'Roboto', sans-serif;
+  }
   .fade-enter-active, .fade-enter{
     -webkit-animation: moveFromRight .5s both ease;
     animation: moveFromRight .5s both ease;

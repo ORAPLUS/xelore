@@ -9,7 +9,6 @@ require(`./themes/app.${__THEME}.styl`)
 import Vue from 'vue'
 import Quasar from 'quasar'
 import Vuelidate from 'vuelidate'
-
 import axios from './common/axios'
 import router from './router'
 import { store } from './store'
@@ -17,21 +16,16 @@ import { store } from './store'
 import VueRouter from 'vue-router'
 import firebase from 'firebase'
 import i18n from './lang/lang'
-import { APIKEY,
-         AUTHDOMAIN,
-         DATABASEURL,
-         PROJECTID,
-         STORAGEBUCKET } from './common/config'
-
 import 'font-awesome/css/font-awesome.css'
 import 'highlight/lib/vendor/highlight.js/styles/default.css'
 import 'dragula/dist/dragula.css'
 
 Vue.use(Vuelidate)
-Vue.use(Quasar) // Install Quasar Framework
+Vue.use(Quasar)
 Vue.use(axios)
 Vue.use(VueRouter)
-
+/* eslint-disable no-new */
+import config from './config/config.json'
 export const app = new Vue({
   el: '#q-app',
   router,
@@ -40,11 +34,11 @@ export const app = new Vue({
   render: h => h(require('./App')),
   created () {
     firebase.initializeApp({
-      apiKey: APIKEY,
-      authDomain: AUTHDOMAIN,
-      databaseURL: DATABASEURL,
-      projectId: PROJECTID,
-      storageBucket: STORAGEBUCKET
+      apiKey: config.APIKEY,
+      authDomain: config.AUTHDOMAIN,
+      databaseURL: config.DATABASEURL,
+      projectId: config.PROJECTID,
+      storageBucket: config.STORAGEBUCKET
     })
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -54,6 +48,5 @@ export const app = new Vue({
   }
 })
 Quasar.start(() => {
-  /* eslint-disable no-new */
   app
 })

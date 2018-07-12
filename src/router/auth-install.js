@@ -1,7 +1,7 @@
-import {store} from '@/store'
+import install from '@/config/install.json'
 
 export default (to, from, next) => {
-  if (store.getters.getUser) {
+  if (install.INSTALL) {
     next()
   }
   else {

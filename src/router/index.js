@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AuthGuard from './auth-guard'
+import AuthInstall from './auth-install'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,14 @@ export default new VueRouter({
         name: 'Form find / edit'
       },
       beforeEnter: AuthGuard
+    },
+    {
+      path: '/install',
+      component: load('views/form/install/install'),
+      meta: {
+        name: 'Installation de XELORE'
+      },
+      beforeEnter: AuthInstall
     },
     {
       path: '/embeeded',

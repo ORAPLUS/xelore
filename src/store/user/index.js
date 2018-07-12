@@ -1,4 +1,4 @@
-import apiUser from '../../common/api.service'
+import apiUser from '@/common/api.service'
 // STATES
 const state = {
   user: null,
